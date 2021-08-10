@@ -65,5 +65,5 @@ func (c *Client) PublishJetstream(stream string, subject string, payload string,
 	})
 
 	// Wait for an ack response .
-	return js.Publish(subject, []byte(payload), nats.AckWait(ackwait))
+	return js.Publish(subject, []byte(payload), nats.AckWait(ackwait)), err
 }
