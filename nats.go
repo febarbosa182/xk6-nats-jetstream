@@ -55,7 +55,7 @@ func (c *Client) PublishJetstream(stream string, subject string, payload string,
 	// return c.client.Publish(subject, []byte(payload))
 	js, err := c.client.JetStream()
 	if err != nil {
-		return (), err
+		return nil, err
 	}
 
 	// Set custom timeout for a JetStream API request.
