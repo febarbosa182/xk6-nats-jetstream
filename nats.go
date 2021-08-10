@@ -42,7 +42,7 @@ func (r *Nats) XClient(ctxPtr *context.Context, natsServer string, timeoutMS int
 func (c *Client) Request(subject string, payload string) (string, error) {
 	msg, err := c.client.Request(subject, []byte(payload), c.defaultTimeout)
 	if err != nil {
-		return "", err
+		return err
 	}
 	return string(msg.Data), err
 }
@@ -55,7 +55,7 @@ func (c *Client) PublishJetstream(stream string, subject string, payload string,
 	// return c.client.Publish(subject, []byte(payload))
 	js, err := c.client.JetStream()
 	if err != nil {
-		return "", err
+		return err
 	}
 
 	// Set custom timeout for a JetStream API request.
