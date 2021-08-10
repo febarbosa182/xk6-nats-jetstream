@@ -3,8 +3,8 @@ package nats
 import (
 	"context"
 
-	"time"
 	"strings"
+	"time"
 
 	"github.com/loadimpact/k6/js/common"
 	"github.com/nats-io/nats.go"
@@ -54,6 +54,9 @@ func (c *Client) Publish(subject string, payload string) error {
 func (c *Client) PublishJetstream(stream string, subject string, payload string, ackwait int) (*nats.PubAck, error) {
 	// return c.client.Publish(subject, []byte(payload))
 	js, err := c.client.JetStream()
+	if err != nil {
+		return (), err
+	}
 
 	// Set custom timeout for a JetStream API request.
 	js.AddStream(&nats.StreamConfig{
@@ -62,5 +65,5 @@ func (c *Client) PublishJetstream(stream string, subject string, payload string,
 	})
 
 	// Wait for an ack response .
-	return js.Publish(subject, []byte(payload), nats.AckWait(ackwait)), err
+	return js.Publish(subject, []byte(payload), nats.AckWait(ackwait))
 }
