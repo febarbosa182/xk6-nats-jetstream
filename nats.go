@@ -54,9 +54,6 @@ func (c *Client) Publish(subject string, payload string) error {
 func (c *Client) PublishJetstream(stream string, subject string, payload string, ackwait int) (*nats.PubAck, error) {
 	// return c.client.Publish(subject, []byte(payload))
 	js, err := c.client.JetStream()
-	// if err != nil {
-	// 	return "", err
-	// }
 
 	// Set custom timeout for a JetStream API request.
 	js.AddStream(&nats.StreamConfig{
