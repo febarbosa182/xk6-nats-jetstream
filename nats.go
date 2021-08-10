@@ -51,7 +51,7 @@ func (c *Client) Publish(subject string, payload string) error {
 	return c.client.Publish(subject, []byte(payload))
 }
 
-func (c *Client) PublishJetstream(stream string, subject string, payload string, ackwait int) *nats.PubAck, error {
+func (c *Client) PublishJetstream(stream string, subject string, payload string, ackwait int) (*nats.PubAck, error) {
 	// return c.client.Publish(subject, []byte(payload))
 	js, err := c.client.JetStream()
 	// if err != nil {
