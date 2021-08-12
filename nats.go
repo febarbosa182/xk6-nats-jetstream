@@ -12,6 +12,8 @@ import (
 	"github.com/loadimpact/k6/js/modules"
 )
 
+const version = "v0.0.1"
+
 func init() {
 	modules.Register("k6/x/nats", new(Nats))
 }
